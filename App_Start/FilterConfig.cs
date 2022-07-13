@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Cadastro
+namespace Register
 {
     public class FilterConfig
     {

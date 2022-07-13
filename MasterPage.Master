@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="Cadastro.MasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="Register.MasterPage" %>
 
 <!DOCTYPE html>
 
@@ -12,8 +12,16 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+            <ul>
+                <li><a href ="Login.aspx">Entrar</a></li>
+                <li><a href ="UsersRegister.aspx">Cadastro de Usuários</a></li>
+                <li><a href ="UserSearch.aspx">Pesquisar Usuário</a></li>
+                <li><a href ="ProductRegister.aspx">Cadastro de Produtos</a></li>
+                <li><a href ="ProductSearch.aspx">Pesquisar Produtos</a></li>
+                <li><a href ="Logout.aspx">Sair</a></li>
+            </ul>
+            <asp:ContentPlaceHolder ID="ContentPrincipal" runat="server">
+            </asp:ContentPlaceHolder>   
         </div>
     </form>
 </body>

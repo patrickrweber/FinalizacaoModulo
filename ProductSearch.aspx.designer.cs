@@ -10,7 +10,7 @@
 
 namespace Register
 {
-    public partial class UserSearch
+    public partial class ProductSearch
     {
 
         /// <summary>

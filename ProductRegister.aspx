@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProductRegister.aspx.cs" Inherits="Cadastro.CadastroProducts" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProductRegister.aspx.cs" Inherits="Register.CadastroProducts" %>
 
 <!DOCTYPE html>
 
