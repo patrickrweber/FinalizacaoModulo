@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace Cadastro
+namespace Register
 {
     public partial class Logout
     {
