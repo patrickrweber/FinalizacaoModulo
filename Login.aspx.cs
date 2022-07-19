@@ -26,6 +26,10 @@ namespace Register
                 Response.Redirect("UserRegister.aspx");
                 Response.Write("<script>alert (' Login realizado com sucesso ');</script>");
             }
+            else
+            {
+                User user = Functions GetUserByID
+            }
 
         }
     }
