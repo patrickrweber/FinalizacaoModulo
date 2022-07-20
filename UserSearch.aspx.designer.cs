@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace Register
+namespace UserRegister
 {
     public partial class UserSearch
     {

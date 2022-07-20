@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Register
+namespace Cadastro
 {
     public class Functions
     {
-
+        public static List<User> userList = new List<User>();
         public static string GetConnectionsDB()
         {
             return "server=127.0.0.1;User Id=root;database=register_db;password=''";
         }
 
-        public static User GetUserByLogin()
+        public static User GetUserByLogin(string login)
         {
             User user = new User();
             MySqlConnection connection = new MySqlConnection(GetConnectionsDB());
@@ -23,7 +23,7 @@ namespace Register
             try
             {
                 connection.Open();
-                command.Parameters.AddWithValue("Login", user.Login);
+                command.Parameters.AddWithValue("Login", login);
                 MySqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
@@ -81,9 +81,9 @@ namespace Register
 
             return user;
         }
-        private static void UserInsert(User user)
+        public static void UserInsert(User user)
         {
-            
+            userList.Add(user);
             MySqlConnection connection = new MySqlConnection(GetConnectionsDB());
             string query = $"INSERT INTO user (Name, Email, Login, Password) values (@Name," +
                 "@Email, @Login, @Password)";
@@ -154,8 +154,10 @@ namespace Register
 
             return users;
         }
-        public static User UserUpdate(User user)
+        public static User UserUpdate(Int32 id, string name, string email, string login, string password)
         {
+            User user = new User();
+            userList.Add(user);
             MySqlConnection connection = new MySqlConnection(GetConnectionsDB());
             string query = $"UPDATE user set Name = @Name, Email = @Email, Login = @Login, Password = @Password " +
                 $"WHERE Id = @Id";
@@ -164,11 +166,11 @@ namespace Register
             try
             {
                 connection.Open();
-                command.Parameters.AddWithValue("Name", user.Name);
-                command.Parameters.AddWithValue("Email", user.Email);
-                command.Parameters.AddWithValue("Login", user.Login);
-                command.Parameters.AddWithValue("Password", user.Password);
-                command.Parameters.AddWithValue("Id", user.Id);
+                command.Parameters.AddWithValue("Name", name);
+                command.Parameters.AddWithValue("Email", email);
+                command.Parameters.AddWithValue("Login", login);
+                command.Parameters.AddWithValue("Password", password);
+                command.Parameters.AddWithValue("Id", id);
 
                 MySqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.Read())
