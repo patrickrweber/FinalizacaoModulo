@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Register
+namespace Cadastro
 {
     public partial class Login : System.Web.UI.Page
     {
@@ -16,19 +16,25 @@ namespace Register
 
         protected void LoginUser_Authenticate(object sender, AuthenticateEventArgs e)
         {
-            Session["EstaLogado"] = true;
-            Session["UsuarioLogado"] = string.Empty;
+            Session["LoggedIn"] = true;
+            Session["UserLogin"] = string.Empty;
 
             if(LoginUser.UserName == "admin" && LoginUser.Password == "admin")
             {
-                Session["EstaLogado"] = true;
-                Session["UsuarioLogado"] = LoginUser.UserName;
-                Response.Redirect("UserRegister.aspx");
+                Session["LoggedIn"] = true;
+                Session["UserLogin"] = LoginUser.UserName;
+                Response.Redirect("RegisterList.aspx");
                 Response.Write("<script>alert (' Login realizado com sucesso ');</script>");
             }
             else
             {
-                User user = Functions GetUserByID
+                User user = Functions.GetUserByLogin(LoginUser.UserName);
+                if(user.Password == LoginUser.Password)
+                {
+                    Session["LoggedIn"] = true;
+                    Session["UserLogin"] = LoginUser.UserName;
+                    Response.Redirect("RegisterList.aspx");
+                }
             }
 
         }

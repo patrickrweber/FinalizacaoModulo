@@ -1,16 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UsersRegister.aspx.cs" Inherits="Register.WebForm1" MasterPageFile="MasterPage.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UsersRegister.aspx.cs" Inherits="Cadastro.WebForm1" MasterPageFile="MasterPage.Master" %>
 
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPrincipal" runat="server">
 
     <asp:Panel ID="PanelRegisterUser" runat="server">
 
-        <table>
+        <table style="height: 220px; width: 352px;">
             <tr>
                 <td>
                     <asp:Label ID="LabelId" runat="server" Text="ID"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="TextBoxId" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBoxId" runat="server" Enabled="False"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -45,12 +45,13 @@
                     <asp:TextBox ID="TextBoxPassword" runat="server"></asp:TextBox>
                 </td>
             </tr>
-
-
         </table>
 
+        <asp:Button ID="ButtonInsert" runat="server" Text="Inserir" OnClick="ButtonInsert_Click" />
+        <asp:Button ID="ButtonUpdate" runat="server" Text="Atualizar" OnClick="ButtonUpdate_Click" />
+        <asp:Button ID="ButtonDelete" runat="server" Text="Excluir" OnClick="ButtonDelete_Click" />
+        <asp:Button ID="ButtonClose" runat="server" Text="Fechar" OnClick="ButtonClose_Click" />
 
     </asp:Panel>
-
 </asp:Content>
 
