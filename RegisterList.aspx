@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RegisterList.aspx.cs" Inherits="Cadastro.RegisterList" MasterPageFile="MasterPage.Master" %>
+﻿<%@ Page Language="C#"  AutoEventWireup="true" CodeBehind="RegisterList.aspx.cs" Inherits="Cadastro.RegisterList" MasterPageFile="MasterPage.Master"%>
 
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPrincipal" runat="server">
     <asp:Panel ID="PanelUserList" runat="server" GroupingText="Lista de Usuarios">

@@ -24,8 +24,12 @@ namespace Cadastro
 
             else
             {
-                GridViewUserList.DataSource = Functions.GetUsersList();
-                GridViewUserList.DataBind();
+                if (!IsPostBack)
+                {
+                    GridViewUserList.DataSource = Functions.GetUsersList();
+                    GridViewUserList.DataBind();
+                }
+                
             }
         }
 

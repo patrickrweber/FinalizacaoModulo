@@ -30,36 +30,50 @@ namespace Cadastro
                 {
                     ButtonUpdate.Visible = mode == "UPD";
                     ButtonDelete.Visible = mode == "DEL";
-                    ButtonInsert.Visible = mode == "INS"; 
+                    ButtonInsert.Visible = mode == "INS";
+
+                    if (mode == "VIEW" || mode == "DEL")
+                    {
+                        int id = int.Parse(Request.QueryString["id"]);
+                        TextBoxId.Text = id.ToString();
+
+                        User user = Functions.GetUserByID(id);
+
+                        TextBoxName.Text = user.Name;
+                        TextBoxEmail.Text = user.Email;
+                        TextBoxLogin.Text = user.Login;
+
+                        TextBoxName.Enabled = false;
+                        TextBoxEmail.Enabled = false;
+                        TextBoxLogin.Enabled = false;
+                        TextBoxPassword.Visible = false;
+                        TextBoxPassword.Enabled = false;
+
+                        LabelPassword.Visible = false;
+                    }
+
+                    if (mode == "UPD")
+                    {
+                        TextBoxPassword.Visible = false;
+                        LabelPassword.Visible = false;
+                    }
+
+                    if (mode != "INS")
+                    {
+                        int id = int.Parse(Request.QueryString["id"]);
+                        TextBoxId.Text = id.ToString();
+
+                        User user = Functions.GetUserByID(id);
+
+                        TextBoxName.Text = user.Name;
+                        TextBoxEmail.Text = user.Email;
+                        TextBoxLogin.Text = user.Login;
+                        TextBoxPassword.Text = user.Password;
+
+                    }
                 }
 
-                if(mode == "VIEW" || mode == "DEL")
-                {
-                    TextBoxName.Enabled = false;
-                    TextBoxEmail.Enabled = false;
-                    TextBoxLogin.Enabled = false;
-                    TextBoxPassword.Enabled = false;
-                }
-
-                if(mode == "UPD")
-                {
-                    TextBoxPassword.Visible = false;
-                    LabelPassword.Visible = false;
-                }
-
-                if(mode != "INS")
-                {
-                    int id = int.Parse(Request.QueryString["id"]);
-                    TextBoxId.Text = id.ToString();
-
-                    User user = Functions.GetUserByID(id);
-
-                    TextBoxName.Text = user.Name;
-                    TextBoxEmail.Text = user.Email;
-                    TextBoxLogin.Text = user.Login;
-                    TextBoxPassword.Text = user.Password;
-                    
-                }
+               
 
 
             }
@@ -67,8 +81,9 @@ namespace Cadastro
 
         protected void ButtonInsert_Click(object sender, EventArgs e)
         {
-            Functions.UserInsert(new User(TextBoxName.Text, TextBoxEmail.Text,
-                TextBoxLogin.Text, TextBoxPassword.Text));
+            User user = new User(TextBoxName.Text, TextBoxEmail.Text,
+                TextBoxLogin.Text, TextBoxPassword.Text);
+            Functions.UserInsert(user);
             Response.Redirect("RegisterList.aspx");
         }
 
