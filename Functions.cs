@@ -9,15 +9,12 @@ namespace Cadastro
     public class Functions
     {
         public static List<User> userList = new List<User>();
-        public static string GetConnectionsDB()
-        {
-            return "server=127.0.0.1;User Id=root;database=register_db;password=''";
-        }
+        public static string ConnectionsDB => "server=127.0.0.1;User Id=root;database=register;password=''";
 
         public static User GetUserByLogin(string login)
         {
             User user = new User();
-            MySqlConnection connection = new MySqlConnection(GetConnectionsDB());
+            MySqlConnection connection = new MySqlConnection(ConnectionsDB);
             string query = $"SELECT top 1 * FROM user WHERE Login = @Login";
             MySqlCommand command = new MySqlCommand(query, connection);
             try
@@ -50,14 +47,14 @@ namespace Cadastro
         {
             User user = new User();
 
-            MySqlConnection connection = new MySqlConnection(GetConnectionsDB());
-            string query = $"SELECT top 1 * FROM user WHERE Id = @Id";
+            MySqlConnection connection = new MySqlConnection(ConnectionsDB);
+            string query = $"SELECT * FROM user WHERE Id = @Id LIMIT 1";
             MySqlCommand command = new MySqlCommand(query, connection);
 
             try
             {
                 connection.Open();
-                command.Parameters.AddWithValue("@id", id);
+                command.Parameters.AddWithValue("@Id", id);
                 MySqlDataReader dataReader = command.ExecuteReader();
 
                 while (dataReader.Read())
@@ -84,7 +81,7 @@ namespace Cadastro
         public static void UserInsert(User user)
         {
             userList.Add(user);
-            MySqlConnection connection = new MySqlConnection(GetConnectionsDB());
+            MySqlConnection connection = new MySqlConnection(ConnectionsDB);
             string query = $"INSERT INTO user (Name, Email, Login, Password) values (@Name," +
                 "@Email, @Login, @Password)";
 
@@ -125,7 +122,7 @@ namespace Cadastro
         public static List<User> GetUsersList()
         {
             List<User> users = new List<User>();
-            MySqlConnection connection = new MySqlConnection(GetConnectionsDB());
+            MySqlConnection connection = new MySqlConnection(ConnectionsDB);
             string query = $"SELECT * FROM user";
             MySqlCommand command = new MySqlCommand(query, connection);
 
@@ -158,7 +155,7 @@ namespace Cadastro
         {
             User user = new User();
             userList.Add(user);
-            MySqlConnection connection = new MySqlConnection(GetConnectionsDB());
+            MySqlConnection connection = new MySqlConnection(ConnectionsDB);
             string query = $"UPDATE user set Name = @Name, Email = @Email, Login = @Login, Password = @Password " +
                 $"WHERE Id = @Id";
             MySqlCommand command = new MySqlCommand(query, connection);
@@ -196,7 +193,7 @@ namespace Cadastro
         public static User UserDelete(Int32 id)
         {
             User user = new User();
-            MySqlConnection connection = new MySqlConnection(GetConnectionsDB());
+            MySqlConnection connection = new MySqlConnection(ConnectionsDB);
             string query = $"DELETE from user where Id = @Id";
             MySqlCommand command = new MySqlCommand(query, connection);
 
@@ -231,7 +228,7 @@ namespace Cadastro
         public static List<User> UserSearch(string id, string name, string email)
         {
             List<User> users = new List<User>();
-            MySqlConnection connection = new MySqlConnection(GetConnectionsDB());
+            MySqlConnection connection = new MySqlConnection(ConnectionsDB);
             string query = $"SELECT id, Nome, Email, Login, Senha  FROM usuario ";
             string queryWhere = string.Empty; //--Criado para armazenar apenas as condições sem o WHERE
 

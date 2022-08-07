@@ -1,8 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UsersRegister.aspx.cs" Inherits="Cadastro.WebForm1" MasterPageFile="MasterPage.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UsersRegister.aspx.cs" Inherits="Cadastro.WebForm1" MasterPageFile="MasterPage.Master"%>
 
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPrincipal" runat="server">
 
-    <asp:Panel ID="PanelRegisterUser" runat="server">
+    <asp:Panel ID="PanelRegisterUser" runat="server" GroupingText="Cadastro">
 
         <table style="height: 220px; width: 352px;">
             <tr>
